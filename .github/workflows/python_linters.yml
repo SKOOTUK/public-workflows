@@ -18,7 +18,7 @@ jobs:
           architecture: 'x64'
 
       - name: Install Formatters
-        run: pip install black
+        run: pip install black flake8
 
       - name: Run Formatters
         uses: wearerequired/lint-action@v1
@@ -28,9 +28,6 @@ jobs:
           auto_fix: true
           git_name: "linter-bot"
           git_email: "linter-bot@skootride.com"
-
-      - name: Install Linters
-        run: pip install flake8
 
       - name: Run Linters
         uses: wearerequired/lint-action@v1
