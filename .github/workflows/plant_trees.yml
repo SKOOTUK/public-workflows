@@ -1,6 +1,13 @@
 name: 'Tree Planter'
 
-on: workflow_call
+on:
+  workflow_call:
+    secrets:
+      key:
+        required: true
+      quantity:
+        required: true
+
 
 jobs:
   gardener:
@@ -9,12 +16,10 @@ jobs:
 
     steps:
       - name: Plant Trees
-        env:
-          ECO_KEY: ${{ secrets.ECO_KEY }}
         run: |
           curl --request POST \
             --url https://eco.skoot.io/api/impact \
             --header 'Accept: application/vnd.skoot.eco.v1+json' \
             --header 'Content-Type: application/json' \
-            --header 'Authorization: $ECO_KEY' \
-            --data '{"type": "tree", "quantity": "1"}'
+            --header 'Authorization: ${{ secrets.key }}' \
+            --data '{"type": "tree", "quantity": "${{ secrets.quantity }}"}'
