@@ -11,11 +11,10 @@ jobs:
       - name: Plant Trees
         env:
           ECO_KEY: ${{ secrets.ECO_KEY }}
-          QUANTITY: ${{ secrets.QUANTITY }}
         run: |
           curl --request POST \
             --url https://eco.skoot.io/api/impact \
             --header 'Accept: application/vnd.skoot.eco.v1+json' \
             --header 'Content-Type: application/json' \
             --header 'Authorization: $ECO_KEY' \
-            --data '{"type": "tree", "quantity": "$QUANTITY"}'
+            --data '{"type": "tree", "quantity": "1"}'
