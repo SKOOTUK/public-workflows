@@ -1,0 +1,22 @@
+name: 'Tree Planter'
+description: 'Plant trees on github events!'
+
+on: workflow_call
+
+jobs:
+  gardener:
+    name: Gardener
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Plant Trees
+        env:
+          ECO_KEY: ${{ secrets.ECO_KEY }}
+          QUANTITY: ${{ secrets.QUANTITY }}
+        run: |
+          curl --request POST \
+            --url https://eco.skoot.io/api/impact \
+            --header 'Accept: application/vnd.skoot.eco.v1+json' \
+            --header 'Content-Type: application/json' \
+            --header 'Authorization: $ECO_KEY' \
+            --data '{"type": "tree", "quantity": "$QUANTITY"}'

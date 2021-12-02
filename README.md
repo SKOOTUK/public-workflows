@@ -1,3 +1,3 @@
-# python-linting
+# public-workflows
 
-public repo for defining basic rules for linting python projects.
+public repo for defining reusable github actions and workflows.
