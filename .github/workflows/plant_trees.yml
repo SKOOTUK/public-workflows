@@ -1,5 +1,4 @@
 name: 'Tree Planter'
-description: 'Plant trees on github events!'
 
 on: workflow_call
 
