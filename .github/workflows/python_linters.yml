@@ -1,6 +1,12 @@
 name: Lint
 
-on: workflow_call
+on:
+  workflow_call:
+    inputs:
+      python_version:
+        required: false
+        type: string
+        default: '3.9'
 
 jobs:
   run-linters:
@@ -14,7 +20,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v1
         with:
-          python-version: '3.x'
+          python-version: ${{ inputs.python_version }}
           architecture: 'x64'
 
       - name: Install Python Dependencies
@@ -24,7 +30,7 @@ jobs:
         uses: wearerequired/lint-action@v1
         with:
           black: true
-          black_args: "--exclude='.*_pb2.py'"          
+          black_args: "--exclude='.*_pb2.py'"
           flake8: true
           flake8_args: "--max-line-length=88 --select=C,E,F,W,B,B950 --extend-ignore=E203,E501 --max-complexity=18 --exclude='*_pb2.py'"
           auto_fix: true
